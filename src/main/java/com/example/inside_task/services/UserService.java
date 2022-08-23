@@ -35,4 +35,8 @@ public class UserService implements UserDetailsService {
         }
         return new org.springframework.security.core.userdetails.User(u.getLogin(), u.getPassword(), true, true, true, true, new HashSet<>());
     }
+
+    public Optional<User> findById(Long id){
+       return userRepository.findById(id);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.inside_task.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name ="user")
@@ -8,7 +9,7 @@ public class User {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     @Column(name = "login")
     private String login;
     @Column(name = "password")
@@ -20,10 +21,11 @@ public class User {
     @Column(name = "age")
     private Integer age;
 
+
     public User() {
     }
 
-    public User(Integer id, String login, String password, String firstname, String lastname, Integer age) {
+    public User(Long id, String login, String password, String firstname, String lastname, Integer age) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -32,11 +34,11 @@ public class User {
         this.age = age;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
