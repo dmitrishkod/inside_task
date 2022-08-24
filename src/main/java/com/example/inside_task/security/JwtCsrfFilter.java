@@ -71,7 +71,7 @@ public class JwtCsrfFilter extends OncePerRequestFilter {
                     resolver.resolveException(request, response, null, new InvalidCsrfTokenException(csrfToken, actualToken));
             } catch (JwtException e) {
                 if (this.logger.isDebugEnabled()) {
-                    this.logger.debug("Invalid token found for " + UrlUtils.buildFullRequestUrl(request));
+                    this.logger.debug("Invalid x-csrf-token found for " + UrlUtils.buildFullRequestUrl(request));
                 }
 
                 if (missingToken) {
