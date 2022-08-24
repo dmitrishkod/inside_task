@@ -1,8 +1,11 @@
 package com.example.inside_task.entity;
+import lombok.Builder;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_data")
+@Builder
 public class UserData {
     @Id
     @GeneratedValue
@@ -17,7 +20,6 @@ public class UserData {
     private String address;
     @Column(name = "mail")
     private String mail;
-    //TODO message
 
     public UserData(Integer id, User login, String name, String address, String mail) {
         this.id = id;
@@ -28,6 +30,10 @@ public class UserData {
     }
 
     public UserData() {
+    }
+
+    public UserData(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {

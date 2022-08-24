@@ -34,7 +34,7 @@ Create table `user_message`(
                                    ON Delete Restrict
 );
 
-INSERT INTO `inside_task`.`user` (`login`, `password`,`firstname`,`lastname`,`age`) VALUES ('dimas123', 'qwertyddd','Dmitry','Petrov', 33);
+INSERT INTO `inside_task`.`user` (`login`, `password`,`firstname`,`lastname`,`age`) VALUES ('dmitry', 'qwerty','Dmitry','Petrov', 33);
 INSERT INTO `inside_task`.`user` (`login`, `password`,`firstname`,`lastname`,`age`) VALUES ('johnybanana', 'qwertyqwerty','Johny','Banana',22);
 
 INSERT INTO `inside_task`.`user_data` (`user`, `name`, `address`, `mail`) VALUES ('1', 'Petrov Dmitry Dmitrievich', 'Red Square, Moscow, 109012', 'dmitry.petrov@gmail.com');

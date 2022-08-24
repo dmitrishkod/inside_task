@@ -1,10 +1,13 @@
 package com.example.inside_task.entity;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.Optional;
 
 @Entity
 @Table(name = "user_message")
+@Builder
 public class UserMessage {
     @Id
     @GeneratedValue

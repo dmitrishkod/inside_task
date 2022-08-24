@@ -28,6 +28,14 @@ public class JwtCsrfFilter extends OncePerRequestFilter {
         this.resolver = resolver;
     }
 
+    /**
+     * Настраивает и проверяет токен по ссылке /auth/login
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
@@ -63,7 +71,7 @@ public class JwtCsrfFilter extends OncePerRequestFilter {
                     resolver.resolveException(request, response, null, new InvalidCsrfTokenException(csrfToken, actualToken));
             } catch (JwtException e) {
                 if (this.logger.isDebugEnabled()) {
-                    this.logger.debug("Invalid CSRF token found for " + UrlUtils.buildFullRequestUrl(request));
+                    this.logger.debug("Invalid token found for " + UrlUtils.buildFullRequestUrl(request));
                 }
 
                 if (missingToken) {

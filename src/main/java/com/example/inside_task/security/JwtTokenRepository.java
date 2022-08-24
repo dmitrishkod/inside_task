@@ -32,6 +32,11 @@ public class JwtTokenRepository implements CsrfTokenRepository {
         this.secret = "springrest";
     }
 
+    /**
+     * Настройка токена
+     * @param httpServletRequest
+     * @return
+     */
     @Override
     public CsrfToken generateToken(HttpServletRequest httpServletRequest) {
         String id = UUID.randomUUID().toString().replace("-", "");
@@ -52,9 +57,41 @@ public class JwtTokenRepository implements CsrfTokenRepository {
             e.printStackTrace();
             //ignore
         }
-        return new DefaultCsrfToken("x-csrf-token", "_csrf", token);
+        return new DefaultCsrfToken("token", "token", token);
     }
 
+    /**
+     * Создание токена
+     * @return
+     */
+    public String createToken() {
+        String id = UUID.randomUUID().toString().replace("-", "");
+        Date now = new Date();
+        Date exp = Date.from(LocalDateTime.now().plusMinutes(30)
+                .atZone(ZoneId.systemDefault()).toInstant());
+
+        String token = "";
+        try {
+            token = Jwts.builder()
+                    .setId(id)
+                    .setIssuedAt(now)
+                    .setNotBefore(now)
+                    .setExpiration(exp)
+                    .signWith(SignatureAlgorithm.HS256, secret)
+                    .compact();
+        } catch (JwtException e) {
+            e.printStackTrace();
+            //ignore
+        }
+        return token;
+    }
+
+    /**
+     * Сохранение токена
+     * @param csrfToken
+     * @param request
+     * @param response
+     */
     @Override
     public void saveToken(CsrfToken csrfToken, HttpServletRequest request, HttpServletResponse response) {
         if (Objects.nonNull(csrfToken)) {
@@ -74,7 +111,7 @@ public class JwtTokenRepository implements CsrfTokenRepository {
     }
 
     public void clearToken(HttpServletResponse response) {
-        if (response.getHeaderNames().contains("x-csrf-token"))
-            response.setHeader("x-csrf-token", "");
+        if (response.getHeaderNames().contains("token"))
+            response.setHeader("token", "");
     }
 }

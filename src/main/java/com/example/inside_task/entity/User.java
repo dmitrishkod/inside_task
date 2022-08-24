@@ -1,10 +1,12 @@
 package com.example.inside_task.entity;
 
+import lombok.Builder;
+
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name ="user")
+@Builder
 public class User {
     @Id
     @GeneratedValue
@@ -32,6 +34,10 @@ public class User {
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
+    }
+
+    public User(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

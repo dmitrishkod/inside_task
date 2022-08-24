@@ -6,7 +6,6 @@ import com.example.inside_task.models.UserMessageModel;
 import com.example.inside_task.services.UserMessageService;
 import com.example.inside_task.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class UserMessageController {
     protected final String HISTORY = "history 10";
 
     /**
-     * Получение списка пользователей
+     * Получение списка сообщений всех пользователей
      *
      * @return
      */
@@ -34,7 +33,11 @@ public class UserMessageController {
         return userMessageService.list();
     }
 
-
+    /**
+     * Сохранение сообщений от пользователя / Вызов последних 10 сообщений пользователя по ключевому слову "history 10"
+     * @param newUserMessage
+     * @return
+     */
     @PostMapping(path = "/send", produces = "application/json")
     public ResponseEntity<List<UserMessage>> saveMessage(@RequestBody UserMessageModel newUserMessage) {
         Long userId = Long.parseLong(newUserMessage.getUser_id());

@@ -20,5 +20,7 @@ public class UserController {
      * @return
      */
     @GetMapping(path = "/", produces = "application/json")
-    public List<User> getUsers() {return userService.list();}
+    public List<User> getUsers() {
+        return userService.list();
+    }
 }

@@ -22,6 +22,10 @@ public class AuthController {
         this.service = service;
     }
 
+    /**
+     * Логинимся по данным в БД
+     * @return
+     */
     @PostMapping(path = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody com.example.inside_task.entity.User getAuthUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

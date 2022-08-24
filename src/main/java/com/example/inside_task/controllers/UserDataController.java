@@ -20,6 +20,7 @@ public class UserDataController {
      * @return
      */
     @GetMapping(path = "/", produces = "application/json")
-    public List<UserData> getUserData() {return userDataService.list();}
-    //TODO получать данные по id
+    public List<UserData> getUserData() {
+        return userDataService.list();
+    }
 }
