@@ -74,7 +74,7 @@ curl -X POST http://localhost:3000/message/send -d "{\"user_id\":1,\"name\":\"qq
 ## Скачать
 Скачать с Github 
 ```Java
-install https://github.com/dmitrishkod/inside_task/archive/refs/heads/master.zip
+скачать https://github.com/dmitrishkod/inside_task/archive/refs/heads/master.zip
 ```
 ## Задание
 >- В БД создать пару sql табличек со связями (foreign keys)
