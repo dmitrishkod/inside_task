@@ -46,6 +46,31 @@ User'ов или сообщений от всех User'ов:
         localhost:3000/message/ - вызов сообщений всех пользователей
 ```
 
+## Testing via curl
+1. Выполняем авторизацию, получаем токен
+```http request
+curl -v http://localhost:3000/auth/login
+```
+2. Получаем список всех пользователей
+```http request
+curl --header "x-csrf-token: (полученный токен)" http://localhost:3000/users/
+```
+3. Получаем список данных всех пользователей
+```http request
+curl --header "x-csrf-token: (полученный токен)" http://localhost:3000/userdata/
+```
+4. Получаем список сообщений всех пользователей
+```http request
+curl --header "x-csrf-token: (полученный токен)" http://localhost:3000/message/
+```
+5. Добавляем сообщение конкретного пользователя в базу данных
+```http request
+curl -X POST http://localhost:3000/message/send -d "{\"user_id\":1,\"name\":\"qqq1\",\"message\":\"Hello\"}" -H "Content-Type: application/json"  --header "x-csrf-token: (полученный токен)"
+```
+6. Получаем последние 10 сообщений от конкретного пользователя
+```http request
+curl -X POST http://localhost:3000/message/send -d "{\"user_id\":1,\"name\":\"qqq1\",\"message\":\"history 10\"}" -H "Content-Type: application/json"  --header "x-csrf-token: (полученный токен)"
+```
 ## Installation
 Install from Github 
 ```Java
