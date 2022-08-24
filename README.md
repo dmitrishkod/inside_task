@@ -46,7 +46,7 @@ User'ов или сообщений от всех User'ов:
         localhost:3000/message/ - вызов сообщений всех пользователей
 ```
 
-## Testing via curl
+## Тестирование для курл
 1. Выполняем авторизацию, получаем токен
 ```http request
 curl -v http://localhost:3000/auth/login
@@ -71,12 +71,12 @@ curl -X POST http://localhost:3000/message/send -d "{\"user_id\":1,\"name\":\"qq
 ```http request
 curl -X POST http://localhost:3000/message/send -d "{\"user_id\":1,\"name\":\"qqq1\",\"message\":\"history 10\"}" -H "Content-Type: application/json"  --header "x-csrf-token: (полученный токен)"
 ```
-## Installation
-Install from Github 
+## Скачать
+Скачать с Github 
 ```Java
 install https://github.com/dmitrishkod/inside_task/archive/refs/heads/master.zip
 ```
-## Overview
+## Задание
 >- В БД создать пару sql табличек со связями (foreign keys)
 >- Сделать HTTP POST эндпоинт, который получает данные в json вида:
 ```Java
@@ -110,7 +110,7 @@ password: "пароль"
 >- Проверить токен, в случае успешной проверки токена отправить отправителю 10 последних сообщений из БД
  
 
-## Tools/Libraries
+## Инструменты/библиотеки
 >- IDEA Community Edition
 >- Git
 >- Maven
