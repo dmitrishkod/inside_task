@@ -46,7 +46,7 @@ User'ов или сообщений от всех User'ов:
         localhost:3000/message/ - вызов сообщений всех пользователей
 ```
 
-## Тестирование для курл
+## Тестирование для cURL
 1. Выполняем авторизацию, получаем токен
 ```http request
 curl -v http://localhost:3000/auth/login
@@ -91,9 +91,11 @@ mvn clean package
 ```JAVA
 java -jar target/inside_task-0.0.1-SNAPSHOT.war
 ```
-4. создаем Dockerfile
+4. создаем Dockerfile, запускаем контейнер
 ```JAVA
+docker compose up
 ```
+![Screenshot](image_2022-08-25_18-16-54.png) 
 5. Собираем образ
 ```JAVA
 docker build --tag=inside_task:latest .
@@ -119,8 +121,6 @@ docker ps
 docker build --tag=inside_task .
 ```
 11. app
-```JAVA
-```
 
 12. Запуск контейнера с приложением
 ```JAVA
