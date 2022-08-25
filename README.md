@@ -76,6 +76,56 @@ curl -X POST http://localhost:3000/message/send -d "{\"user_id\":1,\"name\":\"qq
 ```Java
 скачать https://github.com/dmitrishkod/inside_task/archive/refs/heads/master.zip
 ```
+## Запуск через Docker (не актуально)
+1. Установим настройки подключения к mysql в application.properties
+```JAVA
+spring.datasource.url = jdbc:mysql://mysqldb:3306/inside_task
+spring.datasource.username = sys
+spring.datasource.password = 1234
+```
+2. Cобираем исполняемый файл (таргет)
+```JAVA
+mvn clean package
+```
+3. Cкрипт запуска таргета
+```JAVA
+java -jar target/inside_task-0.0.1-SNAPSHOT.war
+```
+4. создаем Dockerfile
+```JAVA
+```
+5. Собираем образ
+```JAVA
+docker build --tag=inside_task:latest .
+```
+6. Устанавливаем mysql
+```JAVA
+docker pull mysql:8.0
+```
+7. Создаем соединение для mysql
+```JAVA
+docker network create inside_task_mysqlnet
+```
+8. Запускаем образ базы данных
+```JAVA
+docker run -it --name mysqldb --network=inside_task_mysqlnet -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=inside_task -e MYSQL_USER=sys -e MYSQL_PASSWORD=1234 -d mysql:8.0
+``` 
+9. Чтобы узнать запущенные контейнеры, их порты и айди
+```JAVA
+docker ps
+```
+10. Собираем контейнер приложения
+```JAVA
+docker build --tag=inside_task .
+```
+11. app
+```JAVA
+```
+
+12. Запуск контейнера с приложением
+```JAVA
+docker run --network=inside_task_mysqlnet --name inside_task_container -p 8887:8888 -d inside_task
+```
 ## Задание
 >- В БД создать пару sql табличек со связями (foreign keys)
 >- Сделать HTTP POST эндпоинт, который получает данные в json вида:
