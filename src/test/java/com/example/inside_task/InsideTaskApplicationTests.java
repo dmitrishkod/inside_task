@@ -74,7 +74,7 @@ class InsideTaskApplicationTests {
         listOfUsers.add(User.builder().login("mihail322").password("qwerty322").firstname("Mihail").lastname("Petrov").age(23).build());
         userRepository.saveAll(listOfUsers);
         // when -  действие или поведение, которое мы собираемся тестировать
-        ResultActions response = mockMvc.perform(get("/users/").header("token", token));
+        ResultActions response = mockMvc.perform(get("/users/").header("x-csrf-token", token));
 
         // then - проверяем вывод
         response.andExpect(status().isOk())
@@ -101,7 +101,7 @@ class InsideTaskApplicationTests {
         listOfUsersData.add(UserData.builder().user(user2).name("qwerty222").address("Samara..").mail("gun@mail.ru").build());
         userDataRepository.saveAll(listOfUsersData);
         // when -  действие или поведение, которое мы собираемся тестировать
-        ResultActions response = mockMvc.perform(get("/userdata/").header("token", token));
+        ResultActions response = mockMvc.perform(get("/userdata/").header("x-csrf-token", token));
 
         // then - проверяем вывод
         response.andExpect(status().isOk())
@@ -154,7 +154,7 @@ class InsideTaskApplicationTests {
         UserMessageModel userMessageModel = new UserMessageModel("Ramesh","history 10", user1.getId().toString());
         // when -  действие или поведение, которое мы собираемся тестировать
         ResultActions response = mockMvc.perform(post("/message/send")
-                .header("token", token)
+                .header("x-csrf-token", token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userMessageModel)));
 
@@ -177,7 +177,7 @@ class InsideTaskApplicationTests {
         UserMessageModel userMessageModel = new UserMessageModel("Ramesh","Hello World", user1.getId().toString());
         // when -  действие или поведение, которое мы собираемся тестировать
         ResultActions response = mockMvc.perform(post("/message/send")
-                .header("token", token)
+                .header("x-csrf-token", token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userMessageModel)));
 
