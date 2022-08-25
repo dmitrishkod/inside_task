@@ -26,7 +26,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtTokenRepository jwtTokenRepository;
-
+    @Qualifier("handlerExceptionResolver")
     @Autowired
     private HandlerExceptionResolver resolver;
 
